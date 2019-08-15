@@ -35,23 +35,24 @@ void setup() {
 void circle() {
   pixels.clear(); // Set all pixel colors to 'off'
   int led = 0;
+  int leds[2] = {0,1};
   
   // The first NeoPixel in a strand is #0, second is 1, all the way up
   // to the count of pixels minus one.
   for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
 
     switch (i){
-      case 0 : led = 0;
+      case 0 : led = 0; leds[0] = 0; leds[1]=1;
         break;
-      case 1 : led = 5;
+      case 1 : led = 5; leds[0] = 5; leds[1]=0;
         break;
-      case 2 : led = 4;
+      case 2 : led = 4; leds[0] = 4; leds[1]=5;
         break;
-      case 3 : led = 3;
+      case 3 : led = 3; leds[0] = 3; leds[1]=4;
         break;
-      case 4 : led = 2;
+      case 4 : led = 2; leds[0] = 2; leds[1]=3;
         break;
-      case 5 : led = 1;
+      case 5 : led = 1; leds[0] = 1; leds[1]=2;
         break;
     }
 
@@ -60,7 +61,10 @@ void circle() {
     // Here we're using a moderately bright green color:
     pixels.clear(); // Set all pixel colors to 'off'
 
-    pixels.setPixelColor(led, pixels.Color(255,69,0));
+//    pixels.setPixelColor(led, pixels.Color(255,69,0));
+    
+    pixels.setPixelColor(leds[0], pixels.Color(255,69,0));
+    pixels.setPixelColor(leds[1], pixels.Color(255,69,0));
 
     pixels.show();   // Send the updated pixel colors to the hardware.
 
